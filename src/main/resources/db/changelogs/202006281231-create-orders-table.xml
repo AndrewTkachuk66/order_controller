@@ -15,7 +15,7 @@
             <column name="quantity" type="varchar(256)">
                 <constraints nullable="false"/>
             </column>
-            <column name="time" type="datetime">
+            <column name="order_date_time" type="datetime">
                 <constraints nullable="false" />
             </column>
             <column name="product_id" type="BIGINT">

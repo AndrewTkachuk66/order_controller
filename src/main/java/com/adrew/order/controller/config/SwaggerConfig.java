@@ -8,12 +8,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.RequestMethod;
 import springfox.documentation.builders.*;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger.web.UiConfigurationBuilder;
@@ -53,9 +51,6 @@ public class SwaggerConfig {
     @Value("${swagger.api.contact.email}")
     private String contactEmail;
 
-   /* @Value("${jwt.token.header.key}")
-    private String tokenHeader;*/
-
     @Value("${swagger.pageable.page.name}")
     private String pageParamName;
 
@@ -76,12 +71,9 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.andrew.order.controller.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.adrew.order.controller.controller"))
                 .paths(PathSelectors.ant("/**"))
                 .build()
-                //.securitySchemes(Lists.newArrayList(apiKey()))
-                //.securityContexts(Arrays.asList(securityContext()))
-                //.ignoredParameterTypes(Authentication.class)
                 .useDefaultResponseMessages(false)
                 .globalResponseMessage(RequestMethod.GET, errorList)
                 .globalResponseMessage(RequestMethod.POST, errorList)
@@ -109,24 +101,6 @@ public class SwaggerConfig {
                 .validatorUrl(null)
                 .build();
     }
-
-    /*private ApiKey apiKey() {
-        return new ApiKey("header", "header", "header");
-    }*/
-
-    /*private List<SecurityReference> defaultAuth() {
-        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
-        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
-        authorizationScopes[0] = authorizationScope;
-        return Arrays.asList(new SecurityReference(tokenHeader, authorizationScopes));
-    }*/
-
-    /*private SecurityContext securityContext() {
-        return SecurityContext.builder()
-                //.securityReferences(defaultAuth())
-                .forPaths(PathSelectors.regex("^/api/v1/(?!auth/).*$"))
-                .build();
-    }*/
 
     private Type pageableMixin() {
         return new AlternateTypeBuilder()

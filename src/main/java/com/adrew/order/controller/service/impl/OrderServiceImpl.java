@@ -27,4 +27,9 @@ public class OrderServiceImpl implements OrderService {
         log.info("Order was created: {}", orderDto);
         return orderDto;
     }
+
+    @Override
+    public OrderDto getOrderWithLowestPrice() {
+        return null;
+    }
 }

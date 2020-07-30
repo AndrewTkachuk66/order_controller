@@ -21,14 +21,25 @@ public class OrderController {
     private OrderService orderService;
 
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully created task"),
+            @ApiResponse(code = 200, message = "Successfully created order"),
             @ApiResponse(code = 400, message = "Invalid data"),
     })
-    @ApiOperation(value = "Save task into database",
+    @ApiOperation(value = "Save order into database",
             response = OrderDto.class)
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public OrderDto createOrder(@RequestBody OrderDto orderDto) {
         return orderService.createOrder(orderDto);
+    }
+
+    @ApiOperation(value = "get order with the lowest price")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "get order successfully"),
+            @ApiResponse(code = 404, message = "order is not found")
+
+    })
+    @GetMapping("/{eventId}")
+    public OrderDto getOrderWithLowestPrice(){
+        return orderService.getOrderWithLowestPrice();
     }
 }

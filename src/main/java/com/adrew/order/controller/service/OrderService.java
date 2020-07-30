@@ -7,5 +7,7 @@ import com.adrew.order.controller.dto.OrderDto;
  */
 public interface OrderService {
     OrderDto createOrder(OrderDto orderDto);
+
+    OrderDto getOrderWithLowestPrice();
 }
 
