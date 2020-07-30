@@ -3,7 +3,6 @@ package com.adrew.order.controller.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
