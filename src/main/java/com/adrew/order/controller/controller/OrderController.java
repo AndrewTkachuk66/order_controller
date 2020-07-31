@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Created by Andre on 30.07.2020.
  */
@@ -38,8 +40,8 @@ public class OrderController {
             @ApiResponse(code = 404, message = "order is not found")
 
     })
-    @GetMapping("/{eventId}")
-    public OrderDto getOrderWithLowestPrice(){
+    @GetMapping("lowest/price")
+    public List<OrderDto> getOrdersWithLowestPrice(){
         return orderService.getOrderWithLowestPrice();
     }
 }

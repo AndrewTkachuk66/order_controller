@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Andre on 30.07.2020.
  */
@@ -29,7 +31,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public OrderDto getOrderWithLowestPrice() {
-        return null;
+    public List<OrderDto> getOrderWithLowestPrice() {
+        List<OrderEntity> ordersWithLowestPrice = orderRepository.getOrderWithLowestPrice();
+        log.info("Order with the lowest price was retrieved: {}", ordersWithLowestPrice);
+
+        return orderMapper.toOrderDtoList(ordersWithLowestPrice);
     }
 }
